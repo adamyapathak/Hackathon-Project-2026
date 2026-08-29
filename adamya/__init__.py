@@ -1,0 +1,1 @@
+"""Clemson Live Night Sky backend."""
