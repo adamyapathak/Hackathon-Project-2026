@@ -21,21 +21,21 @@
             </div>
             <div class="rectangles-container">
                 <div class="Information">
-                    <h3>Local Time:</h3>
-                    <h3>Sky Conditions:</h3>
+                    <h3 id="local_time">Local Time:</h3>
+                    <h3 id="conditions">Sky Conditions:</h3>
                     <p class="section-subtitle">Today's Highlights:</p>
-                    <div class="highlights-box"></div>
+                    <div class="highlights-box" id="highlights"></div>
                     <div class="button-group">
-                        <button class="info-button">What You Should See</button>
-                        <button class="info-button">What you do see</button>
+                        <button class="info-button" id="light_pollution_false">What You Should See</button>
+                        <button class="info-button" id="light_pollution_true">What You Do See</button>
                     </div>
                 </div>
                 <div class="Gemini-Overview">
-                    <h2>Gemini Overview:</h2>
+                    <h2 id="gemini">Gemini Overview:</h2>
                 </div>
             </div>
             <div id="planets_stars" style="display: block; position: absolute; top: 22.5%; height: 77.5%; left: 27.5%; width: 45%;">
-
+                <p id="light_pollution_txtbox"><br><br><br><br>You can't see any stars or planets right now because of light pollution. Light pollution is the excessive, misdirected, or inappropriate use of outdoor artificial lighting that causes stars and planets to not be visible.</p>
             </div>
         </div>
     </body>
