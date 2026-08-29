@@ -1,0 +1,792 @@
+* {
+    box-sizing: border-box;
+}
+
+:root {
+    --bg: #070a1a;
+    --panel: rgba(12, 16, 39, 0.88);
+    --panel-soft: rgba(20, 24, 52, 0.85);
+    --border: rgba(220, 220, 240, 0.7);
+    --text: #f5f2ff;
+    --muted: #b9b5ca;
+    --accent: #d7b8ff;
+    --accent-bright: #9ed8ff;
+    --danger: #ffb6b6;
+}
+
+html,
+body {
+    margin: 0;
+    min-height: 100%;
+}
+
+body {
+    font-family: Georgia, "Times New Roman", serif;
+    color: var(--text);
+    background:
+        radial-gradient(
+            circle at 70% 20%,
+            rgba(83, 73, 150, 0.22),
+            transparent 35%
+        ),
+        radial-gradient(
+            circle at 20% 80%,
+            rgba(39, 69, 130, 0.18),
+            transparent 35%
+        ),
+        #070a1a;
+    overflow-x: hidden;
+}
+
+/* ---------------------------
+   Main page
+---------------------------- */
+
+.app {
+    width: 100%;
+    min-height: 100vh;
+    padding: 18px;
+}
+
+/* Star-field background */
+
+.app::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+
+    background-image:
+        radial-gradient(circle, rgba(255,255,255,.65) 1px, transparent 1px),
+        radial-gradient(circle, rgba(255,255,255,.35) 1px, transparent 1px);
+
+    background-size:
+        125px 125px,
+        195px 195px;
+
+    background-position:
+        15px 20px,
+        70px 85px;
+
+    opacity: .65;
+}
+
+/* ---------------------------
+   Header
+---------------------------- */
+
+header,
+.page-header,
+.hero {
+    width: 100%;
+    text-align: center;
+
+    padding: 20px 24px 22px;
+
+    border: 2px solid var(--border);
+    border-radius: 14px;
+
+    background: rgba(10, 13, 35, 0.84);
+
+    margin-bottom: 20px;
+}
+
+header h1,
+.page-header h1,
+.hero h1 {
+    margin: 0;
+
+    font-size: clamp(42px, 5vw, 72px);
+    line-height: .95;
+
+    color: #fff;
+}
+
+header h2,
+.page-header h2,
+.hero h2 {
+    margin: 8px 0 0;
+
+    font-size: 18px;
+    font-weight: 400;
+
+    color: var(--muted);
+}
+
+#date-label {
+    margin-top: 8px;
+    font-size: 18px;
+    color: var(--muted);
+}
+
+/* ---------------------------
+   Main dashboard layout
+---------------------------- */
+
+.dashboard,
+.dashboard-grid,
+.main-grid,
+.content-grid {
+    width: 100%;
+
+    display: grid;
+
+    grid-template-columns:
+        minmax(250px, 1fr)
+        minmax(420px, 1.7fr)
+        minmax(280px, 1fr);
+
+    gap: 18px;
+
+    align-items: start;
+}
+
+/* Some layouts use left / center / right */
+
+.left-column,
+.left-panel,
+.sidebar-left {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+.center-column,
+.center-panel,
+.main-panel {
+    min-width: 0;
+}
+
+.right-column,
+.right-panel,
+.sidebar-right {
+    min-width: 0;
+
+    display: flex;
+    flex-direction: column;
+    gap: 18px;
+}
+
+/* ---------------------------
+   Generic panels
+---------------------------- */
+
+.panel {
+    width: 100%;
+
+    border: 2px solid var(--border);
+    border-radius: 14px;
+
+    background: var(--panel);
+
+    padding: 18px;
+
+    box-shadow:
+        0 8px 25px rgba(0,0,0,.14);
+
+    overflow: hidden;
+}
+
+.panel h2 {
+    margin: 0 0 8px;
+
+    font-size: 22px;
+    line-height: 1.1;
+}
+
+.panel h3 {
+    margin: 0;
+}
+
+.muted {
+    color: var(--muted);
+}
+
+.error-message {
+    color: var(--danger);
+}
+
+/* ---------------------------
+   Local time / weather panel
+---------------------------- */
+
+#local-time {
+    font-size: 38px;
+    font-weight: 700;
+
+    margin: 4px 0 24px;
+}
+
+#sky-conditions {
+    color: var(--accent-bright);
+
+    font-size: 20px;
+    font-weight: 700;
+
+    margin-top: 5px;
+}
+
+#weather-details {
+    margin-top: 5px;
+
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+.observing-score,
+.score {
+    margin-top: 24px;
+    padding-top: 14px;
+
+    border-top: 1px solid rgba(255,255,255,.16);
+
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+#observing-score {
+    color: var(--accent);
+    font-weight: 700;
+}
+
+/* ---------------------------
+   Highlights
+---------------------------- */
+
+.highlights-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.highlight-card {
+    width: 100%;
+
+    padding: 12px 14px;
+
+    border: 1px solid rgba(255,255,255,.18);
+    border-radius: 10px;
+
+    background: rgba(255,255,255,.035);
+
+    cursor: pointer;
+
+    transition:
+        transform .16s ease,
+        border-color .16s ease,
+        background .16s ease;
+}
+
+.highlight-card:hover {
+    transform: translateY(-2px);
+
+    border-color: rgba(215,184,255,.7);
+
+    background: rgba(215,184,255,.07);
+}
+
+.highlight-topline {
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
+
+    font-size: 18px;
+}
+
+.highlight-topline span {
+    color: var(--accent);
+}
+
+.highlight-meta {
+    color: var(--muted);
+
+    margin-top: 3px;
+
+    font-size: 14px;
+}
+
+.highlight-card p {
+    margin: 7px 0;
+
+    color: var(--muted);
+
+    font-size: 13px;
+}
+
+.highlight-card small {
+    display: block;
+
+    color: var(--text);
+
+    line-height: 1.35;
+}
+
+/* ---------------------------
+   Light pollution
+---------------------------- */
+
+.light-pollution-box {
+    margin-top: 16px;
+
+    padding: 14px;
+
+    border-top: 1px solid rgba(255,255,255,.16);
+    border-radius: 10px;
+
+    background: rgba(215,184,255,.045);
+}
+
+.light-pollution-box h3 {
+    margin: 0 0 8px;
+
+    font-size: 17px;
+
+    color: var(--accent);
+}
+
+.light-pollution-box p {
+    margin: 7px 0;
+
+    color: var(--muted);
+
+    line-height: 1.4;
+
+    font-size: 13px;
+}
+
+.light-pollution-box strong {
+    display: block;
+
+    margin-top: 9px;
+
+    font-size: 13px;
+
+    line-height: 1.35;
+}
+
+/* ---------------------------
+   Sky map
+---------------------------- */
+
+.sky-panel {
+    min-height: 650px;
+}
+
+.sky-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+    margin-bottom: 12px;
+}
+
+.sky-header p {
+    margin: 4px 0 0;
+    font-size: 14px;
+}
+
+.sky-map {
+    position: relative;
+
+    width: min(100%, 610px);
+    aspect-ratio: 1 / 1;
+
+    margin: 10px auto 0;
+
+    border-radius: 50%;
+
+    background:
+        radial-gradient(
+            circle,
+            rgba(30, 38, 85, 0.38),
+            rgba(7, 10, 27, 0.95) 72%
+        );
+
+    border: 2px solid rgba(220, 220, 240, 0.55);
+
+    overflow: visible;
+}
+
+/* Inner sky rings */
+
+.sky-map::before {
+    content: "";
+
+    position: absolute;
+
+    width: 66%;
+    height: 66%;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border: 1px dashed rgba(255,255,255,.12);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+.sky-map::after {
+    content: "";
+
+    position: absolute;
+
+    width: 33%;
+    height: 33%;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    border: 1px dashed rgba(255,255,255,.10);
+
+    border-radius: 50%;
+
+    pointer-events: none;
+}
+
+/* Clemson center */
+
+.sky-center {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    color: rgba(190, 190, 215, .6);
+
+    font-size: 13px;
+
+    letter-spacing: .12em;
+
+    z-index: 2;
+
+    pointer-events: none;
+}
+
+/* Compass */
+
+.horizon {
+    position: absolute;
+
+    z-index: 10;
+
+    color: rgba(220,220,235,.75);
+
+    font-size: 14px;
+
+    pointer-events: none;
+}
+
+.horizon-top {
+    top: 12px;
+    left: 50%;
+
+    transform: translateX(-50%);
+}
+
+.horizon-right {
+    right: 12px;
+    top: 50%;
+
+    transform: translateY(-50%);
+}
+
+.horizon-bottom {
+    bottom: 12px;
+    left: 50%;
+
+    transform: translateX(-50%);
+}
+
+.horizon-left {
+    left: 12px;
+    top: 50%;
+
+    transform: translateY(-50%);
+}
+
+/* Sky objects */
+
+.sky-object {
+    position: absolute;
+
+    transform: translate(-50%, -50%);
+
+    border: 0;
+
+    background: transparent;
+
+    color: #fff;
+
+    cursor: pointer;
+
+    padding: 4px;
+
+    display: flex;
+
+    flex-direction: column;
+
+    align-items: center;
+
+    z-index: 20;
+
+    font-family: inherit;
+
+    transition:
+        transform .15s ease;
+}
+
+.sky-object:hover {
+    transform:
+        translate(-50%, -50%)
+        scale(1.12);
+
+    z-index: 50;
+}
+
+.object-dot {
+    width: 10px;
+    height: 10px;
+
+    border-radius: 50%;
+
+    background: #fff;
+
+    box-shadow:
+        0 0 9px rgba(255,255,255,.9);
+}
+
+.object-name {
+    margin-top: 4px;
+
+    font-size: 11px;
+
+    white-space: nowrap;
+
+    text-shadow:
+        0 1px 5px rgba(0,0,0,.95);
+}
+
+/* Loading / empty state */
+
+.sky-message {
+    position: absolute;
+
+    left: 50%;
+    top: 50%;
+
+    transform: translate(-50%, -50%);
+
+    width: 70%;
+
+    text-align: center;
+
+    color: var(--muted);
+
+    pointer-events: none;
+
+    z-index: 15;
+}
+
+button {
+    font-family: inherit;
+}
+
+#refresh-button,
+#gemini-refresh {
+    border: 1px solid rgba(255,255,255,.55);
+
+    border-radius: 8px;
+
+    background: rgba(255,255,255,.035);
+
+    color: var(--text);
+
+    padding: 9px 14px;
+
+    cursor: pointer;
+
+    font-size: 14px;
+}
+
+#refresh-button:hover,
+#gemini-refresh:hover {
+    background: rgba(255,255,255,.1);
+
+    border-color: var(--accent);
+}
+
+#refresh-button:disabled,
+#gemini-refresh:disabled {
+    opacity: .55;
+    cursor: wait;
+}
+
+/* ---------------------------
+   Sky panel header
+---------------------------- */
+
+.sky-panel-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 15px;
+
+    margin-bottom: 10px;
+}
+
+.sky-panel-header p {
+    margin: 4px 0 0;
+
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+/* ---------------------------
+   Gemini
+---------------------------- */
+
+.gemini-panel {
+    min-height: 430px;
+}
+
+.gemini-badge {
+    display: inline-block;
+
+    padding: 4px 10px;
+
+    border: 1px solid rgba(215,184,255,.6);
+    border-radius: 20px;
+
+    color: var(--accent);
+
+    font-size: 11px;
+
+    letter-spacing: .08em;
+    text-transform: uppercase;
+}
+
+.gemini-header {
+    display: flex;
+
+    align-items: center;
+
+    gap: 10px;
+
+    margin-bottom: 12px;
+}
+
+#gemini-target {
+    color: var(--muted);
+
+    font-size: 14px;
+}
+
+#gemini-overview {
+    min-height: 220px;
+
+    padding: 18px;
+
+    border-radius: 10px;
+
+    background: rgba(255,255,255,.035);
+
+    color: var(--text);
+
+    font-size: 16px;
+
+    line-height: 1.65;
+
+    white-space: pre-wrap;
+}
+
+/* ---------------------------
+   Last updated
+---------------------------- */
+
+#last-updated {
+    margin-top: 10px;
+
+    color: var(--muted);
+
+    font-size: 12px;
+
+    text-align: center;
+}
+
+/* ---------------------------
+   Responsive
+---------------------------- */
+
+@media (max-width: 1100px) {
+    .dashboard,
+    .dashboard-grid,
+    .main-grid,
+    .content-grid {
+        grid-template-columns:
+            minmax(220px, 1fr)
+            minmax(360px, 1.5fr);
+    }
+
+    .right-column,
+    .right-panel,
+    .sidebar-right {
+        grid-column: 1 / -1;
+
+        display: grid;
+
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 800px) {
+    .app {
+        padding: 10px;
+    }
+
+    .dashboard,
+    .dashboard-grid,
+    .main-grid,
+    .content-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .left-column,
+    .center-column,
+    .right-column,
+    .left-panel,
+    .center-panel,
+    .right-panel,
+    .sidebar-left,
+    .sidebar-right,
+    .main-panel {
+        grid-column: auto;
+    }
+
+    .sky-panel {
+        min-height: auto;
+    }
+
+    #sky-map {
+        width: min(90vw, 560px);
+    }
+
+    header h1,
+    .page-header h1,
+    .hero h1 {
+        font-size: 45px;
+    }
+}

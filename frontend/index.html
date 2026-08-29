@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Clemson Under the Stars</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+
+<body>
+    <main class="page-shell">
+
+        <!-- Header -->
+        <header class="hero">
+            <p class="eyebrow">CLEMSON UNIVERSITY</p>
+
+            <h1>Today's Sky</h1>
+
+            <p class="subtitle" id="date-label">
+                Loading sky data...
+            </p>
+        </header>
+
+
+        <!-- Main Dashboard -->
+        <section class="dashboard">
+
+            <!-- LEFT COLUMN -->
+            <aside class="left-column">
+
+                <!-- Local Time + Sky Conditions -->
+                <section class="panel info-panel">
+
+                    <h2>Local Time</h2>
+
+                    <div
+                        class="big-value"
+                        id="local-time"
+                    >
+                        --:--
+                    </div>
+
+
+                    <h2>Sky Conditions</h2>
+
+                    <div
+                        class="condition"
+                        id="sky-conditions"
+                    >
+                        Loading...
+                    </div>
+
+                    <div
+                        class="condition-details"
+                        id="weather-details"
+                    ></div>
+
+
+                    <div class="score-row">
+                        <span>Observing Score</span>
+
+                        <strong id="observing-score">
+                            --
+                        </strong>
+                    </div>
+
+                </section>
+
+
+                <!-- Today's Highlights -->
+                <section class="panel highlights-panel">
+
+                    <h2>Today's Highlights</h2>
+
+                    <div
+                        id="highlights"
+                        class="highlights-list"
+                    >
+                        <p class="muted">
+                            Loading...
+                        </p>
+                    </div>
+
+
+                    <!-- Light Pollution -->
+                    <div class="light-pollution-box">
+
+                        <h3>
+                            Why can't we see everything?
+                        </h3>
+
+                        <p>
+                            Light pollution from city lights
+                            brightens the night sky and can
+                            wash out faint stars and
+                            deep-sky objects.
+                        </p>
+
+                        <p>
+                            That means you may see fewer
+                            stars from campus than you would
+                            from a darker location.
+                        </p>
+
+                        <strong>
+                            Try it: compare the sky from
+                            campus with a darker area outside
+                            the city.
+                        </strong>
+
+                    </div>
+
+                </section>
+
+            </aside>
+
+
+            <!-- CENTER COLUMN -->
+            <section class="center-column">
+
+                <section class="panel sky-panel">
+
+                    <div class="sky-header">
+
+                        <div>
+                            <h2>
+                                Sky Above Clemson
+                            </h2>
+
+                            <p class="muted">
+                                Live observing targets
+                                from the backend
+                            </p>
+                        </div>
+
+
+                        <button
+                            id="refresh-button"
+                            class="refresh-button"
+                            type="button"
+                        >
+                            Refresh
+                        </button>
+
+                    </div>
+
+
+                    <!-- Sky Map -->
+                    <div
+                        class="sky-map"
+                        id="sky-map"
+                        aria-label="Current visible sky objects"
+                    >
+
+                        <div class="sky-center">
+                            CLEMSON
+                        </div>
+
+                        <div class="horizon horizon-top">
+                            N
+                        </div>
+
+                        <div class="horizon horizon-right">
+                            E
+                        </div>
+
+                        <div class="horizon horizon-bottom">
+                            S
+                        </div>
+
+                        <div class="horizon horizon-left">
+                            W
+                        </div>
+
+                        <div
+                            class="sky-message"
+                            id="sky-message"
+                        >
+                            Loading sky...
+                        </div>
+
+                    </div>
+
+                </section>
+
+            </section>
+
+
+            <!-- RIGHT COLUMN -->
+            <aside class="right-column">
+
+                <section class="panel gemini-panel">
+
+                    <div class="gemini-heading">
+
+                        <div class="gemini-badge">
+                            GEMINI
+                        </div>
+
+                        <div>
+
+                            <h2>
+                                Gemini Overview
+                            </h2>
+
+                            <p
+                                class="muted"
+                                id="gemini-target"
+                            >
+                                Waiting for tonight's
+                                highlight...
+                            </p>
+
+                        </div>
+
+                    </div>
+
+
+                    <div
+                        class="gemini-content"
+                        id="gemini-overview"
+                    >
+                        Loading Gemini's astronomy
+                        overview...
+                    </div>
+
+
+                    <button
+                        id="gemini-refresh"
+                        class="secondary-button"
+                        type="button"
+                    >
+                        Ask Gemini Again
+                    </button>
+
+                </section>
+
+            </aside>
+
+        </section>
+
+
+        <!-- Footer -->
+        <footer>
+            <span id="last-updated">
+                Updating...
+            </span>
+        </footer>
+
+    </main>
+
+
+    <script src="app.js"></script>
+</body>
+</html>
